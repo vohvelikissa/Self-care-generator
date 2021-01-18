@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    font-family: "Work Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+#content section {
+    width: calc(100% / 3);
+    height: 100vh;
+    background-color: grey;
+    margin: 0;
+    padding: 0;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.then {
+    top: calc(50% - 2rem);
+    position: absolute;
+    color: #222;
+    font-size: 2rem;
+    background-color: white;
+    border-radius: 50rem;
+    padding: 1rem;
+}
+
+#then1 {
+    left: calc(33% - 3.1rem);
+}
+
+#then2 {
+    right: calc(33% - 2.5rem);
+}
+
+#content section p {
+    color: white;
+    font-weight: 400;
+    font-size: 3rem;
+    padding: 3.5rem;
+    text-align: center;
+    margin: 0;
+}
+
+@media (max-width: 1000px) {
+    #content section p {
+        font-size: 1.5rem;
+    }
+
+    .then {
+        font-size: 1rem;
+    }
+
+    #then1 {
+        left: calc(33% - 2rem);
+    }
+
+    #then2 {
+        right: calc(33% - 1.5rem);
+    }
+}
+
+.new-tip {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    color: #222;
+    font-size: 1.5rem;
+    background-color: white;
+    border-color: white;
+    border-radius: 3rem;
+    padding: 1rem 1.4rem;
+    cursor: pointer;
+}
+
+.new-tip span {
+    font-weight: bolder;
+}
