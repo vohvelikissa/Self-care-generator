@@ -100,6 +100,12 @@ async function main() {
             "Watch or play some sports",
             "Do a breathing exercise",
             "Listen to calming music",
+            "Eat something sour",
+            "Drink coffee or tea",
+            "Hug a stuffed animal",
+            "Feel the wind or a fan on your face",
+            "Drink some hot cooca",
+            "Take a few deep breaths"
         ],
         recovery: [
             "Watch an old favorite movie",
@@ -118,11 +124,21 @@ async function main() {
             "Do a compassion exercise",
             "Make a fitting music mix",
             "Color a coloring book / picture",
+            "Do some people watching",
+            "Stand on the porch / balcony",
+            "Hide in bed with under a blanket",
+            "Lie down for a while",
+            "Read some comics",
+            "Draw",
+            "Go for a walk",
+            "Give yourself a break",
+            "Pet your shoulder",
+            "Tell yourself it's going to be okay"
         ],
         care: [
             "Take care of your nails",
             "Take care of the skin on your face",
-            "Stretch your eye muscles by looking far",
+            "Stretch your eye muscles by looking really far",
             "Do some stretches",
             "Take a bath or shower",
             "Take care of your skin",
@@ -141,6 +157,9 @@ async function main() {
             "Clean your working area",
             "Listen to some comedy",
             "Make sure you stay hydrated",
+            "Take care of your hair",
+            "Eat some chocolate",
+            "Take a moment for yourself",
         ],
     };
 
