@@ -36,11 +36,13 @@ body {
 }
 
 #then1 {
-    left: calc(33% - 3.1rem);
+    left: 33%;
+    transform: translateX(-50%);
 }
 
 #then2 {
-    right: calc(33% - 2.5rem);
+    right: 33%;
+    transform: translateX(50%);
 }
 
 #content section p {
@@ -61,12 +63,33 @@ body {
         font-size: 1rem;
     }
 
+}
+
+@media (max-width: 762px) {
+    #content {
+        flex-direction: column;
+    }
+    
+    #content section {
+        width: 100%;
+    }
+    
+
     #then1 {
-        left: calc(33% - 2rem);
+        top: 33%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
     }
 
     #then2 {
-        right: calc(33% - 1.5rem);
+        right: 50%;
+        top: 66%;
+        transform: translateX(50%) translateY(-50%);
+    }
+
+
+    .then {
+        font-size: 1.5rem;
     }
 }
 
