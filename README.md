@@ -5,7 +5,7 @@
 Simple web application to get random self care instruction combo: **ground - recovery - care**.  
 Idea is to open the tool when necessary, and do the combo to feel better.
 
-You can use the application here: https://rsl1122.github.io/Self-care-generator/
+You can use the application here: https://aurorals3.github.io/Self-care-generator/
 
 # Contributing
 
