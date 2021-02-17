@@ -74,7 +74,6 @@ function renderTechnique(technique) {
     const text = technique.text;
     const color = technique.color;
     technique.element.innerHTML = `<p>${text}</p>`;
-
     technique.element.style.backgroundColor = `rgb(${color[0]},${color[1]},${color[2]})`;
 }
 
@@ -105,7 +104,7 @@ async function main() {
             "Hug a stuffed animal",
             "Feel the wind or a fan on your face",
             "Drink some hot cooca",
-            "Take a few deep breaths"
+            "Take a few deep breaths",
         ],
         recovery: [
             "Watch an old favorite movie",
@@ -133,7 +132,7 @@ async function main() {
             "Go for a walk",
             "Give yourself a break",
             "Pet your shoulder",
-            "Tell yourself it's going to be okay"
+            "Tell yourself it's going to be okay",
         ],
         care: [
             "Take care of your nails",
@@ -163,28 +162,111 @@ async function main() {
         ],
     };
 
-    const options = new Options(configuration);
-
-    const careTechniques = [
-        {
-            element: document.getElementById("grounding"),
-            text: options.getRandomGroundingTechnique(),
-            color: Colors.randomRGBColor(),
-        },
-        {
-            element: document.getElementById("recovery"),
-            text: options.getRandomRecoveryTechnique(),
-            color: Colors.randomRGBColor(),
-        },
-        {
-            element: document.getElementById("care"),
-            text: options.getRandomCareTechnique(),
-            color: Colors.randomRGBColor(),
-        },
-    ];
-
-    for (technique of careTechniques) {
-        renderTechnique(technique);
+    function renderTechniques(texts) {
+        return (
+            '<ul class="scrollable"><li></li><li></li><li></li><li>' +
+            texts.join("</li><li>") +
+            "</li><li></li><li></li><li></li></ul>"
+        );
     }
+
+    const groundingEl = document.getElementById("grounding");
+    const recoveryEl = document.getElementById("recovery");
+    const careEl = document.getElementById("care");
+    groundingEl.innerHTML = renderTechniques(configuration.grounding);
+    recoveryEl.innerHTML = renderTechniques(configuration.recovery);
+    careEl.innerHTML = renderTechniques(configuration.care);
+
+    function throttle(fn, wait) {
+        let time;
+        return function () {
+            if (!time || time + wait - Date.now() < 0) {
+                fn();
+                time = Date.now();
+            }
+        };
+    }
+
+    const onScrollTextHighlight = (element) => () => {
+        for (const child of element.children) {
+            const scrollerBox = element.getBoundingClientRect();
+            const height = scrollerBox.height;
+
+            const boundingBox = child.getBoundingClientRect();
+            const position =
+                boundingBox.top - scrollerBox.top + boundingBox.height / 2;
+
+            const middle = height / 2;
+            const distance = Math.abs(middle - position);
+
+            child.style.opacity = 1 - (distance / height) * ((window.innerHeight * 3) / height);
+        }
+    };
+
+    const onScrollBgColor = (element) => () => {
+        requestAnimationFrame(() => {
+            const color = Colors.randomRGBColor();
+            element.style.backgroundColor = `rgb(${color[0]},${color[1]},${color[2]})`;
+        });
+    };
+
+    groundingEl.children[0].addEventListener(
+        "scroll",
+        throttle(onScrollBgColor(groundingEl), 1000)
+    );
+    groundingEl.children[0].addEventListener(
+        "scroll",
+        throttle(onScrollTextHighlight(groundingEl.children[0]), 50),
+        { passive: true }
+    );
+    recoveryEl.children[0].addEventListener(
+        "scroll",
+        throttle(onScrollBgColor(recoveryEl), 1000)
+    );
+    recoveryEl.children[0].addEventListener(
+        "scroll",
+        throttle(onScrollTextHighlight(recoveryEl.children[0]), 50),
+        { passive: true }
+    );
+    careEl.children[0].addEventListener(
+        "scroll",
+        throttle(onScrollBgColor(careEl), 1000)
+    );
+    careEl.children[0].addEventListener(
+        "scroll",
+        throttle(onScrollTextHighlight(careEl.children[0]), 50),
+        { passive: true }
+    );
+
+    const scrollOptions = {
+        behavior: "smooth",
+        block: "center",
+    };
+
+    const spacers = 3;
+
+    function scrollToRandom() {
+        const selectedGrounding =
+            groundingEl.children[0].children[
+                Math.floor(Math.random() * configuration.grounding.length) +
+                    spacers
+            ];
+        selectedGrounding.scrollIntoView(scrollOptions);
+        const selectedRecovery =
+            recoveryEl.children[0].children[
+                Math.floor(Math.random() * configuration.recovery.length) +
+                    spacers
+            ];
+        selectedRecovery.scrollIntoView(scrollOptions);
+        const selectedCare =
+            careEl.children[0].children[
+                Math.floor(Math.random() * configuration.care.length) + spacers
+            ];
+        selectedCare.scrollIntoView(scrollOptions);
+    }
+    const randomizeButton = document.getElementById("randomize-button");
+    randomizeButton.addEventListener("click", scrollToRandom);
+
+    setTimeout(() => randomizeButton.click(), 0);
 }
 main();
