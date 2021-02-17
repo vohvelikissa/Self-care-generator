@@ -103,7 +103,7 @@ async function main() {
             "Drink coffee or tea",
             "Hug a stuffed animal",
             "Feel the wind or a fan on your face",
-            "Drink some hot cooca",
+            "Drink some hot cocoa",
             "Take a few deep breaths",
         ],
         recovery: [
